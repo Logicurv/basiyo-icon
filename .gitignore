@@ -14,8 +14,9 @@ out/
 build
 
 dist
-generated-icons/*
-!generated-icons/.gitkeep
+
+generated-icons
+.npmrc
 
 # misc
 .DS_Store

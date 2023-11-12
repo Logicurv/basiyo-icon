@@ -11,7 +11,7 @@
   "files": ["dist"],
   "scripts": {
     "dev": "pnpm build -- --watch",
-    "build": "pnpm generate:icon && tsup src/index.ts --format cjs,esm --dts",
+    "build": "pnpm generate:icon && tsup generated-icons/index.ts --format cjs,esm --dts",
     "generate:icon": "svgr  --icon  --typescript -d  generated-icons ../../icons"
   },
   "devDependencies": {
