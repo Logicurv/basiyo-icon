@@ -128,14 +128,16 @@ importers:
         version: registry.npmjs.org/tsup@7.2.0
 
   packages/react-native:
-    dependencies:
-      react:
-        specifier: ^16.5.1 || ^17.0.0 || ^18.0.0
-        version: registry.npmjs.org/react@18.2.0
     devDependencies:
       '@svgr/cli':
         specifier: ^8.1.0
         version: registry.npmjs.org/@svgr/cli@8.1.0
+      '@types/react':
+        specifier: ^18.2.37
+        version: registry.npmjs.org/@types/react@18.2.37
+      react:
+        specifier: ^18.2.0
+        version: registry.npmjs.org/react@18.2.0
       react-native:
         specifier: ^0.72.6
         version: registry.npmjs.org/react-native@0.72.6(@babel/core@7.22.11)(@babel/preset-env@7.23.3)(react@18.2.0)
@@ -145,16 +147,6 @@ importers:
       tsup:
         specifier: ^7.2.0
         version: registry.npmjs.org/tsup@7.2.0
-
-  packages/react-native-icon:
-    dependencies:
-      react:
-        specifier: ^16.5.1 || ^17.0.0 || ^18.0.0
-        version: registry.npmjs.org/react@18.2.0
-    devDependencies:
-      '@svgr/cli':
-        specifier: ^8.1.0
-        version: registry.npmjs.org/@svgr/cli@8.1.0
 
   packages/tsconfig: {}
 
@@ -679,7 +671,7 @@ packages:
   /@types/react-dom@18.2.3:
     resolution: {integrity: sha512-hxXEXWxFJXbY0LMj/T69mznqOZJXNtQMqVxIiirVAZnnpeYiD4zt+lPsgcr/cfWg2VLsxZ1y26vigG03prYB+Q==}
     dependencies:
-      '@types/react': 18.2.5
+      '@types/react': registry.npmjs.org/@types/react@18.2.5
     dev: true
 
   /@types/react@18.2.5:
@@ -6393,7 +6385,7 @@ packages:
     dependencies:
       '@babel/core': registry.npmjs.org/@babel/core@7.22.11
       '@babel/helper-plugin-utils': registry.npmjs.org/@babel/helper-plugin-utils@7.22.5
-      '@babel/types': registry.npmjs.org/@babel/types@7.22.11
+      '@babel/types': registry.npmjs.org/@babel/types@7.23.3
       esutils: registry.npmjs.org/esutils@2.0.3
     dev: true
 
@@ -7624,6 +7616,38 @@ packages:
     version: 20.5.2
     dev: true
 
+  registry.npmjs.org/@types/prop-types@15.7.5:
+    resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.5.tgz}
+    name: '@types/prop-types'
+    version: 15.7.5
+    dev: true
+
+  registry.npmjs.org/@types/react@18.2.37:
+    resolution: {integrity: sha512-RGAYMi2bhRgEXT3f4B92WTohopH6bIXw05FuGlmJEnv/omEn190+QYEIYxIAuIBdKgboYYdVved2p1AxZVQnaw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@types/react/-/react-18.2.37.tgz}
+    name: '@types/react'
+    version: 18.2.37
+    dependencies:
+      '@types/prop-types': registry.npmjs.org/@types/prop-types@15.7.5
+      '@types/scheduler': registry.npmjs.org/@types/scheduler@0.16.3
+      csstype: registry.npmjs.org/csstype@3.1.2
+    dev: true
+
+  registry.npmjs.org/@types/react@18.2.5:
+    resolution: {integrity: sha512-RuoMedzJ5AOh23Dvws13LU9jpZHIc/k90AgmK7CecAYeWmSr3553L4u5rk4sWAPBuQosfT7HmTfG4Rg5o4nGEA==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@types/react/-/react-18.2.5.tgz}
+    name: '@types/react'
+    version: 18.2.5
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.3
+      csstype: 3.1.2
+    dev: true
+
+  registry.npmjs.org/@types/scheduler@0.16.3:
+    resolution: {integrity: sha512-5cJ8CB4yAx7BH1oMvdU0Jh9lrEXyPkar6F9G/ERswkCuvP4KQZfZkSjcMbAICCpQTN4OuZn8tz0HiKv9TGZgrQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@types/scheduler/-/scheduler-0.16.3.tgz}
+    name: '@types/scheduler'
+    version: 0.16.3
+    dev: true
+
   registry.npmjs.org/@types/stack-utils@2.0.3:
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/@types/stack-utils/-/stack-utils-2.0.3.tgz}
     name: '@types/stack-utils'
@@ -8482,6 +8506,12 @@ packages:
     engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
     dependencies:
       css-tree: registry.npmjs.org/css-tree@2.2.1
+    dev: true
+
+  registry.npmjs.org/csstype@3.1.2:
+    resolution: {integrity: sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==, registry: https://registry.npmjs.com/, tarball: https://registry.npmjs.org/csstype/-/csstype-3.1.2.tgz}
+    name: csstype
+    version: 3.1.2
     dev: true
 
   registry.npmjs.org/dashify@2.0.0:
