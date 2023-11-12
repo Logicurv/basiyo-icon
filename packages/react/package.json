@@ -1,0 +1,24 @@
+{
+  "name": "@basiyo/react-icon",
+  "description": "A custom icon library for basiyo",
+  "license": "ISC",
+  "private": false,
+  "version": "0.0.1",
+  "author": "Prajwal Pradhan",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "dev": "pnpm build -- --watch",
+    "build": "pnpm generate:icon && tsup src/index.ts --format cjs,esm --dts",
+    "generate:icon": "svgr  --icon  --typescript -d  generated-icons ../../icons"
+  },
+  "devDependencies": {
+    "@svgr/cli": "^8.1.0",
+    "tsup": "^7.2.0"
+  },
+  "peerDependencies": {
+    "react": "^16.5.1 || ^17.0.0 || ^18.0.0"
+  }
+}

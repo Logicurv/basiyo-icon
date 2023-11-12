@@ -1,0 +1,30 @@
+{
+  "name": "@basiyo/react-native-icon",
+  "description": "A custom icon library for basiyo",
+  "license": "ISC",
+  "private": false,
+  "version": "0.0.1",
+  "author": "Prajwal Pradhan",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "pnpm build -- --watch",
+    "build": "pnpm generate:icon && tsup generated-icons/index.ts --format cjs,esm",
+    "generate:icon": "svgr  --icon --native --typescript -d  generated-icons ../../icons"
+  },
+  "devDependencies": {
+    "@svgr/cli": "^8.1.0",
+    "react-native": "^0.72.6",
+    "react-native-svg": "^13.14.0",
+    "tsup": "^7.2.0"
+  },
+  "peerDependencies": {
+    "react": "^16.5.1 || ^17.0.0 || ^18.0.0",
+    "react-native": "*",
+    "react-native-svg": "^12.0.0 || ^13.0.0"
+  }
+}

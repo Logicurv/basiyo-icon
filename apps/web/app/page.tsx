@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Card } from "ui";
+import {Accessibility,Album} from '@basiyo/react'
 import styles from "./page.module.css";
 
 function Gradient({
@@ -55,7 +56,8 @@ export default function Page(): JSX.Element {
       <div className={styles.description}>
         <p>
           examples/basic&nbsp;
-          <code className={styles.code}>web</code>
+        <Accessibility style={{fontSize:32}}/>
+        <Album style={{fontSize:32}}/>
         </p>
         <div>
           <a
