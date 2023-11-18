@@ -3,7 +3,7 @@
   "description": "A custom icon library for basiyo",
   "license": "ISC",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.4",
   "author": "Prajwal Pradhan",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -11,8 +11,8 @@
   "files": ["dist"],
   "scripts": {
     "dev": "pnpm build -- --watch",
-    "build": "pnpm generate:icon && tsup generated-icons/index.ts --format cjs,esm --dts",
-    "generate:icon": "svgr  --icon  --typescript -d  generated-icons ../../icons"
+    "build": "pnpm generate:icon && tsup src/index.tsx --format cjs,esm --dts",
+    "generate:icon": "svgr  --icon  --typescript --index-template index-template.cjs -d  src/generated-icons ../../icons"
   },
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
