@@ -69,6 +69,13 @@ function writeDeclarationFile(){
         declarationFileContent += `export declare const Svg${componentName}: BasiyoReactNativeIconType;\n`;
     });
 
+    const iconNames =svgFiles.map((svgFile) => {
+        const _name= path.basename(svgFile, '.svg');
+        return `"${_name}"`
+    });
+
+
+    declarationFileContent +=`\n//alias\nexport type IconNames =  ${iconNames.join(" | ")} ;`
 
 
     const aliasArray=[];
@@ -78,7 +85,14 @@ function writeDeclarationFile(){
         const componentName = toPascalCase(iconName);
         aliasArray.push(`Svg${componentName} as ${componentName}`)
     })
-    declarationFileContent +=`\n//alias\nexport { ${aliasArray.join(",")} };`
+
+    declarationFileContent +=`\n
+type INameProps = Omit<SVGProps<SVGSVGElement>, "name"> & {
+    name: IconNames;
+};\n
+declare function Icon({ name, ...otherProps }: INameProps): JSX.Element;\n
+//alias
+\nexport { ${aliasArray.join(",")},Icon as default };`
     writeFile(declarationFileContent,"index.d.ts",distDirectory)
 }
 writeDeclarationFile()
