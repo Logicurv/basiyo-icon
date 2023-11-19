@@ -12,7 +12,7 @@ export const getCurrentDirPath = (currentPath) => path.dirname(fileURLToPath(cur
 
 
 export const writeFile = (content, fileName, outputDirectory) =>
-    fs.writeFileSync(path.join(outputDirectory, fileName), content, 'utf-8');
+    fs.appendFileSync(path.join(outputDirectory, fileName), content, 'utf-8');
 
 
 /**
@@ -52,22 +52,26 @@ export const toPascalCase = (string) => {
 const currentDir = getCurrentDirPath(import.meta.url);
 const ICONS_DIR = path.resolve(currentDir, '../../../icons');
 const distDirectory = path.join(currentDir, '../dist');
+const generatedDirectory = path.join(currentDir, '../src/generated-icons');
 
 let declarationFileContent = `\
 /// <reference types="react" />
 import type { SvgProps } from "react-native-svg";
+
+function kebabToPascalCase(kebabString:string) {
+  return kebabString
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join('');
+}
+
+const Component = Icon[d] as (props: React.SVGProps<SVGSVGElement>) => JSX.Element
 
 // Generated icon
 type BasiyoReactNativeIconType= (props: SVGProps<SVGSVGElement>) => JSX.Element;
 `;
 function writeDeclarationFile(){
     const svgFiles = readSvgDirectory(ICONS_DIR);
-    svgFiles.forEach((svgFile) => {
-        const iconName = path.basename(svgFile, '.svg');
-        const componentName = toPascalCase(iconName);
-
-        declarationFileContent += `export declare const Svg${componentName}: BasiyoReactNativeIconType;\n`;
-    });
 
     const iconNames =svgFiles.map((svgFile) => {
         const _name= path.basename(svgFile, '.svg');
@@ -75,25 +79,8 @@ function writeDeclarationFile(){
     });
 
 
-    declarationFileContent +=`\n//alias\nexport type IconNames =  ${iconNames.join(" | ")} ;`
-
-
-    const aliasArray=[];
-
-    svgFiles.forEach((svgFile)=>{
-        const iconName = path.basename(svgFile, '.svg');
-        const componentName = toPascalCase(iconName);
-        aliasArray.push(`Svg${componentName} as ${componentName}`)
-    })
-
-    declarationFileContent +=`\n
-type INameProps = Omit<SVGProps<SVGSVGElement>, "name"> & {
-    name: IconNames;
-};\n
-declare function Icon({ name, ...otherProps }: INameProps): JSX.Element;\n
-//alias
-\nexport { ${aliasArray.join(",")},Icon as default };`
-    writeFile(declarationFileContent,"index.d.ts",distDirectory)
+    declarationFileContent =`\n//alias\nexport type IconNames =  ${iconNames.join(" | ")} ;`
+    writeFile(declarationFileContent,"index.ts",generatedDirectory)
 }
 writeDeclarationFile()
 
